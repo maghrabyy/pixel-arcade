@@ -35,9 +35,9 @@ export const Content = ()=>{
     ]
     const swiperOptions = {
         1024:{slidesPerView:4,spaceBetween:30},
-        768:{slidesPerView:3,spaceBetween:10},
+        768:{slidesPerView:3,spaceBetween:20},
     }
-    const mainSwiper = {slidesPerView:2,spaceBetween:5}
+    const mainSwiper = {slidesPerView:2,spaceBetween:15}
     return <div className="text-white font-pixel text-lg min-h-screen py-4">
         <TransparentContainer>
             <Reveal>
