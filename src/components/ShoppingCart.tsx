@@ -1,6 +1,6 @@
 import { FaShoppingBasket } from "react-icons/fa";
 import { TbShoppingCartQuestion } from "react-icons/tb";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import CartContext from "../Context/CartContext";
 import CoinsContext from "../Context/CoinsContext";
 import staticCoin from '../assets/images/objects/staticcoin.png';
@@ -22,6 +22,13 @@ export const ShopppingCart = ()=>{
 
             }
     }
+    useEffect(() => {
+        if(showCart){
+            document.body.style.overflow = 'hidden';
+        }else{
+            document.body.style.overflow = 'unset';
+        }
+     }, [showCart]);
     return showCart ? <div className="shopping-cart">
         <div onClick={()=>setShowCart(false)} className="overlay fixed z-30 h-full w-full bg-gray-400 opacity-35 cursor-pointer"></div>
         <div style={showCart? mountedStyle : unmountedStyle} className="fixed top-0 right-0 w-5/6 sm:w-4/6 md:w-1/2 h-full z-40 bg-black opacity-95 px-4 py-2 flex flex-col justifys-between">

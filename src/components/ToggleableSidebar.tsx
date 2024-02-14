@@ -1,4 +1,4 @@
-import { useContext } from "react"
+import { useContext,useEffect } from "react"
 import NavContext from "../Context/NavContext"
 import { IoGameController } from "react-icons/io5";
 import { FaShoppingBag } from "react-icons/fa";
@@ -20,6 +20,13 @@ export const ToggleableSidebar = ()=>{
         'bg-[url(assets/images/sidebarbg-winter.png)] bg-cover',
         'bg-[url(assets/images/pixelcity.jpg)] bg-cover bg-center'
     ]
+    useEffect(() => {
+        if(showNav){
+            document.body.style.overflow = 'hidden';
+        }else{
+            document.body.style.overflow = 'unset';
+        }
+     }, [showNav]);
     return showNav? <div style={showNav? mountedStyle : unmountedStyle} className={`toggle-sidebar fixed top-0 left-0 h-full w-full z-50 ${sidebarBgs[4]} `}>
         <div onClick={()=>setShowNav(false)} className="close-sidebar absolute top-2 left-5 text-white font-pixel text-4xl cursor-pointer hover:text-gray-300">X</div>
         <div className="flex flex-col justify-center items-center h-full text-4xl nav-menu gap-3">
