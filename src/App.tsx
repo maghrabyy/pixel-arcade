@@ -7,7 +7,7 @@ import { ShopppingCart } from './components/ShoppingCart';
 
 function App() {
   return (
-    <div className={`App bg-[url(assets/images/header.jpg)] bg-cover bg-fixed`}>
+    <div className={`App bg-gradient-to-tr from-blue-900 to-purple-950`}>
         <ToggleableSidebar/>
         <ShopppingCart/>
         <LandingPage />

@@ -14,7 +14,7 @@ export const LandingPage = ()=>{
     useEffect(()=>{
         setContentTopPadding(navHeight);
     },[]);
-    return <div className='min-h-screen'>
+    return <div className='bg-[url(assets/images/header.jpg)] bg-cover min-h-screen'>
         <Navbar/>
         <div style={{paddingTop:contentTopPadding}} className="h-full">
                 <TransparentContainer>
