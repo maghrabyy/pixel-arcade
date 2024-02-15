@@ -32,7 +32,7 @@ export const ShopppingCart = ()=>{
     return showCart ? <div className="shopping-cart">
         <div onClick={()=>setShowCart(false)} className="overlay fixed z-30 h-full w-full bg-gray-400 opacity-35 cursor-pointer"></div>
         <div style={showCart? mountedStyle : unmountedStyle} className="fixed top-0 right-0 w-5/6 sm:w-4/6 md:w-1/2 h-full z-40 bg-black opacity-95 px-4 py-2 flex flex-col justifys-between">
-            <div className="cart-title flex items-center gap-2 text-white text-4xl font-pixel pt-2 pb-4">
+            <div className="cart-title flex items-center justify-between text-white sm:text-4xl text-3xl font-pixel pt-2 pb-4">
                 <span>Shopping Cart</span>
                 <FaShoppingBasket/>
             </div>
