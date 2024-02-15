@@ -1,3 +1,9 @@
+:root {
+  --swiper-navigation-color: white;
+  --swiper-pagination-color: white;
+  --swiper-pagination-bullet-inactive-color: #a19f9f;
+}
+
 .nav-item{
     @apply text-white font-pixel cursor-pointer font-medium hover:text-gray-300 select-none;
 }
