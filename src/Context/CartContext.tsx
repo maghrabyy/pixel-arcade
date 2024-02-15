@@ -1,35 +1,58 @@
 import {Dispatch, ReactNode,SetStateAction, createContext, useState } from "react";
 import { IItem } from "../interfaces/Item.interface";
 
+interface ICartItem {
+    selectedItem:IItem
+    quantity:number
+}
 
 type stateContextType = {
-    userCart:Array<IItem>;
-    setUserCart:Dispatch<SetStateAction<Array<IItem>>>;
+    userCart:Array<ICartItem>;
+    setUserCart:Dispatch<SetStateAction<Array<ICartItem>>>;
     addItemToCart:(item:IItem)=>void;
     removeItemFromCart:(item:IItem)=>void;
+    incrementQuantity:(item:IItem)=>void;
+    decrementQuantity:(item:IItem)=>void;
     showCart:boolean;
     setShowCart:Dispatch<SetStateAction<boolean>>
 }
 const CartContext = createContext<stateContextType>(null as unknown as stateContextType);
 
 export const CartProvider = ({children}:{children:ReactNode})=>{
-    const [userCart,setUserCart] = useState(Array<IItem>);
+    const [userCart,setUserCart] = useState(Array<ICartItem>);
     const [showCart,setShowCart] = useState(false);
     const addItemToCart = (item:IItem)=> {
-        if(!userCart.includes(item)){
-            const cartsArray = [...userCart,item]
+        if(!userCart.map(cartItem=>cartItem.selectedItem).includes(item)){
+            const cartsArray = [...userCart,{selectedItem:item,quantity:1}]
             setUserCart(cartsArray);
         }
     }
     const removeItemFromCart = (cartItem:IItem)=>{
         const cartsArray = [...userCart];
-        setUserCart(cartsArray.filter((item=>item !== cartItem)))
+        setUserCart(cartsArray.filter((item=>item.selectedItem !== cartItem)))
+    }
+    const incrementQuantity = (cartItem:IItem)=>{
+        const cartsArray = [...userCart];
+        const itemIndex = cartsArray.map(item=>item.selectedItem).indexOf(cartItem);
+        cartsArray[itemIndex].quantity +=1;
+        setUserCart(cartsArray);
+    }
+    const decrementQuantity = (cartItem:IItem)=>{
+        const cartsArray = [...userCart];
+        const quantity = cartsArray.find(item=>item.selectedItem === cartItem)?.quantity;
+        if(quantity! > 1){
+            const itemIndex = cartsArray.map(item=>item.selectedItem).indexOf(cartItem);
+            cartsArray[itemIndex].quantity -=1;
+            setUserCart(cartsArray);
+        }
     }
     const valueToShare = {
         userCart,
         setUserCart,
         addItemToCart,
         removeItemFromCart,
+        incrementQuantity,
+        decrementQuantity,
         showCart,
         setShowCart
     }

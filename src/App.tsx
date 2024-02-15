@@ -12,7 +12,7 @@ function App() {
         <ShopppingCart/>
         <LandingPage />
         <Content/>
-        {/* <ArcadeConsole />*/}
+        {/* <ArcadeConsole /> */}
     </div>
   );    
 }
