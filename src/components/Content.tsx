@@ -29,7 +29,7 @@ export const Content = ()=>{
         {img:nightJar,category:item.ItemCategory.food,title:'Midnight Jar', desc:"Jar full of honey and magic substance.", price:800},
     ]
 
-    return <div className="text-white font-pixel text-lg min-h-screen py-4">
+    return <div className="text-white font-pixel text-lg py-4">
         <TransparentContainer>
             <Reveal>
                 <SectionTitle className='text-gray-300' title='Items Shop' />

@@ -14,7 +14,7 @@ export const ItemCard = ({item}:ItemCardProps)=>{
     const AddToCartHandler = ()=>{
             addItemToCart(item);
     }
-    return <div className="item-card relative overflow-hidden bg-black select-none bg-opacity-60 min-h-[400px] flex flex-col justify-end px-4 rounded-md py-2">
+    return <div className="item-card relative overflow-hidden bg-black select-none bg-opacity-60 h-[400px] flex flex-col justify-end px-4 rounded-md py-2">
         <div className="img border-b-2 h-[250px] flex justify-center items-end">
             <img src={item.img} className='pb-2 max-w-[240px] min-w-[160px]' alt={item.title} />
         </div>

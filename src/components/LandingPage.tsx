@@ -1,6 +1,3 @@
-import { Navbar } from './navbar';
-import { useState,useEffect } from 'react';
-import { navHeight } from './navbar';
 import { ImgContainer } from '../util/ImgContainer';
 import { TransparentContainer } from '../util/TransparentContainer';
 import arcade from '../assets/images/objects/realarcade.png';
@@ -8,15 +5,11 @@ import pixelPC from '../assets/images/objects/pixelpc.png';
 import pixelPizza from '../assets/images/objects/pixelpizza.png'
 import pixelJar from '../assets/images/objects/pixelnightjar.png'
 import { Reveal } from '../util/Reveal';
+import { navHeight } from './navbar';
 
 export const LandingPage = ()=>{
-    const [contentTopPadding,setContentTopPadding] = useState<number | undefined>(0);
-    useEffect(()=>{
-        setContentTopPadding(navHeight);
-    },[]);
-    return <div className='min-h-screen'>
-        <Navbar/>
-        <div style={{paddingTop:contentTopPadding}} className="h-full">
+    // console.log(navHeight)
+    return <div style={{minHeight: `calc(100vh - ${navHeight}px)`,}}>
                 <TransparentContainer>
                    <Reveal className='grid lg:grid-cols-4 grid-cols-1'>
                     <div className="text lg:text-start text-center flex flex-col gap-4 col-span-3">
@@ -34,6 +27,5 @@ export const LandingPage = ()=>{
                     </Reveal>
                 </TransparentContainer>  
         </div>
-    </div>
 }
 

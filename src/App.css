@@ -4,6 +4,19 @@
   --swiper-pagination-bullet-inactive-color: #a19f9f;
 }
 
+body{
+  background-image: url(assets/images/header.jpg);
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+@media (min-width: 768px) {
+  body {
+      background-position: left top;
+  }
+}
+
 .nav-item{
     @apply text-white font-pixel cursor-pointer font-medium hover:text-gray-300 select-none;
 }
@@ -47,3 +60,4 @@
       transform: translateX(100%);
     }
   }
+
