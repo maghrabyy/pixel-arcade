@@ -43,7 +43,7 @@ export const Navbar = ()=>{
         }
     }
     window.addEventListener('scroll',navbarColorChangeHandler);
-    return <div ref={navRef} className={`nav-bar select-none z-20 fixed w-full shadow-lg py-4 xl:px-10 lg:px-6 md:px-4 px-2 flex justify-between items-center ${navbarColor}`}>
+    return <div ref={navRef} className={`nav-bar select-none z-20 fixed w-full py-4 xl:px-10 lg:px-6 md:px-4 px-2 flex justify-between items-center ${navbarColor}`}>
         <RxHamburgerMenu onClick={()=>setShowNav(true)} className='text-2xl block md:hidden text-white hover:text-gray-400 cursor-pointer' />
         <div className="health-bar flex gap-2">
             {userHealth > 0? Array.from(Array(userHealth), (_, i) => <img key={i} src={pixelHeart} width={heartsEffect? 45 : 40} alt="pixel heart" />):

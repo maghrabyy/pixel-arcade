@@ -12,7 +12,7 @@ function App() {
         <ToggleableSidebar/>
         <ShopppingCart/>
         <MainLayout>
-          <LandingPage />
+          {/* <LandingPage /> */}
           <Content/>
         </MainLayout>
         {/* <ArcadeConsole /> */}
