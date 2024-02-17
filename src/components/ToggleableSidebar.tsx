@@ -27,7 +27,7 @@ export const ToggleableSidebar = ()=>{
             document.body.style.overflow = 'unset';
         }
      }, [showNav]);
-    return showNav? <div style={showNav? mountedStyle : unmountedStyle} className={`toggle-sidebar fixed top-0 left-0 h-full w-full z-50 ${sidebarBgs[4]} `}>
+    return showNav? <div style={showNav? mountedStyle : unmountedStyle} className={`toggle-sidebar fixed top-0 left-0 h-full w-full z-50 bg-[#10021d] ${sidebarBgs[4]} `}>
         <div onClick={()=>setShowNav(false)} className="close-sidebar absolute top-2 left-5 text-white font-pixel text-4xl cursor-pointer hover:text-gray-300">X</div>
         <div className="flex flex-col justify-center items-center h-full text-4xl nav-menu gap-3">
             <div className="nav-item flex justify-center gap-2"><IoHome/><div>Home</div></div>

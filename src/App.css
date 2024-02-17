@@ -5,17 +5,16 @@
 }
 
 body{
-  background-color: #21023d;
+  background-image: url(assets/images/pattern6.jpg);
+  background-size:contain;
 }
-
-/* @media (min-width: 768px) {
-  body {
-      background-position: left top;
-  }
-} */
 
 .nav-item{
     @apply text-white font-pixel cursor-pointer font-medium hover:text-gray-300 select-none;
+}
+
+.pageLink{
+  @apply cursor-pointer hover:text-gray-400;
 }
 
 @keyframes inNavAnimation {

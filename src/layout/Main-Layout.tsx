@@ -1,8 +1,7 @@
 import { ReactNode,useState,useEffect } from "react"
 import { Navbar } from "../components/navbar"
 import { navHeight } from "../components/navbar"
-import { LandingPage } from "../components/LandingPage"
-
+import { Footer } from "../components/Footer"
 type MainLayoutProps = {
     children: ReactNode
 }
@@ -13,14 +12,10 @@ export const MainLayout = ({children}:MainLayoutProps)=>{
         setContentTopPadding(navHeight);
     },[]);
     return <div className="main-layout">
-        <div className="navbar-landing">
-            <Navbar/>
-            <div className="landing" style={{paddingTop:contentTopPadding}}>
-                <LandingPage/>
-            </div>
-        </div>
-        <div>
+        <Navbar/>
+        <div style={{paddingTop:contentTopPadding}}>
             {children}
         </div>
+        <Footer/>
     </div>
 }

@@ -37,7 +37,7 @@ export const Navbar = ()=>{
     },[userHealth])
     const navbarColorChangeHandler = ()=>{
         if(window.scrollY >= navHeight!){
-            setNavbarColor('bg-black bg-opacity-60 backdrop-blur-sm')
+            setNavbarColor('bg-[#10021d] bg-opacity-75 backdrop-blur-sm shadow-md')
         }else{
             setNavbarColor('bg-transparent')
         }

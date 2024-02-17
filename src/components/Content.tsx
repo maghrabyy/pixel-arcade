@@ -1,7 +1,8 @@
 import { TransparentContainer } from '../util/TransparentContainer';
 import { Reveal } from '../util/Reveal';
 import { SectionTitle } from '../util/SectionTitle';
-import { ItemsCarousel } from '../util/ItemsCarousel';
+import { Carousel } from '../util/Carousel';
+import { ItemCard } from './ItemCard';
 
 import bubbleCat from '../assets/images/objects/pixelbubblecat.png';
 import cryingCat from '../assets/images/objects/pixelcryingcat.png';
@@ -33,10 +34,10 @@ export const Content = ()=>{
         <TransparentContainer>
             <Reveal>
                 <SectionTitle className='text-gray-300' title='Items Shop' />
-                <ItemsCarousel slides={animalItems} sliderTitle='animals' />
+                <Carousel slides={animalItems} sliderTitle='animals' render={(item)=><ItemCard item={item} />} />
             </Reveal>
             <Reveal>
-                <ItemsCarousel slides={foodItems} loop={false} sliderTitle='food' />
+                <Carousel slides={foodItems} loop={false} sliderTitle='food' render={(item)=><ItemCard item={item} />} />
             </Reveal>           
         </TransparentContainer>
     </div>

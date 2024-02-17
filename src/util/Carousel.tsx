@@ -5,20 +5,35 @@ import 'swiper/css/navigation';
 import 'swiper/css';
 import { FaChevronRight } from 'react-icons/fa';
 import { FaChevronLeft } from 'react-icons/fa';
-import { ItemCard } from '../components/ItemCard';
+
+type breakPoints = {
+    lg?:number
+    md?:number
+    mobile?:number
+}
 
 type ICarousel = {
     slides:Array<any>
     loop?:boolean
     sliderTitle:string
+    render:(item:any)=>JSX.Element
+    slidesNum?:breakPoints
 }
 
-export const ItemsCarousel = ({slides,loop=true,sliderTitle}:ICarousel)=>{
+
+
+export const Carousel = ({
+    slides,
+    loop = true,
+    sliderTitle,
+    render,
+    slidesNum = {lg:4,md:3,mobile:2}
+    }:ICarousel)=>{
     const swiperOptions = {
-        1024:{slidesPerView:4,spaceBetween:25},
-        768:{slidesPerView:3,spaceBetween:20},
+        1024:{slidesPerView:slidesNum!.lg,spaceBetween:25},
+        768:{slidesPerView:slidesNum!.md,spaceBetween:20},
     }
-    const mainSwiper = {slidesPerView:2,spaceBetween:15}
+    const mainSwiper = {slidesPerView:slidesNum!.mobile,spaceBetween:15}
     return <div className="swiper-main relative my-4">
     <i className={`icon-arrow-long-left ${sliderTitle}-swiper-button-prev z-10 hidden md:block absolute text-5xl top-1/2 -translate-y-1/2 cursor-pointer hover:text-gray-400`}><FaChevronLeft /></i>
     <div className="swiper-container md:px-14">
@@ -36,8 +51,8 @@ export const ItemsCarousel = ({slides,loop=true,sliderTitle}:ICarousel)=>{
                 prevEl: `.${sliderTitle}-swiper-button-prev`,
             }}
             modules={[ Pagination,Navigation]}>
-                {slides.map((item=>{
-                    return <SwiperSlide key={item.img}> <ItemCard item={item} /></SwiperSlide>
+                {slides.map(((item,index)=>{
+                    return <SwiperSlide key={index}> {render(item)}</SwiperSlide>
                 }))}
         </Swiper>
     </div>
@@ -45,3 +60,4 @@ export const ItemsCarousel = ({slides,loop=true,sliderTitle}:ICarousel)=>{
     <div className={`${sliderTitle}-pagination-div text-center mt-2`} />
 </div>
 }
+
