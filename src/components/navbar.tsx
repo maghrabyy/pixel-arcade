@@ -8,7 +8,7 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import NavContext from '../Context/NavContext';
 import { FaShoppingBasket } from "react-icons/fa";
 import CartContext from '../Context/CartContext';
-
+import { NavLink } from 'react-router-dom';
 export let navHeight: number | undefined;
 
 export const Navbar = ()=>{
@@ -50,11 +50,11 @@ export const Navbar = ()=>{
             <img src={rainbowSkull} width={30} alt="rainbow skull" />}
         </div>
         <div className="md:flex hidden nav-menu gap-3">
-            <div className="nav-item">Home</div>
-            <div className="nav-item">Arcade</div>
-            <div className="nav-item">Items Shop</div>
-            <div className="nav-item">My Items</div>
-            <div className="nav-item">About</div>
+            <NavLink to={'/'} className={'nav-item'}>Home</NavLink>
+            <NavLink to={'/console'} className='nav-item'>Arcade</NavLink>
+            <NavLink to={'/items-shop'} className="nav-item">Items Shop</NavLink >
+            <NavLink to={'/my-items'} className="nav-item">My Items</NavLink >
+            <NavLink to={'/aboutus'} className="nav-item">About</NavLink >
         </div>
         <div className="account-menu">
             <div className="use-coin flex gap-2 items-center">

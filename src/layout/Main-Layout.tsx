@@ -1,21 +1,32 @@
-import { ReactNode,useState,useEffect } from "react"
+import { useState,useEffect } from "react"
 import { Navbar } from "../components/navbar"
 import { navHeight } from "../components/navbar"
 import { Footer } from "../components/Footer"
-type MainLayoutProps = {
-    children: ReactNode
-}
+import { ToggleableSidebar } from "../components/ToggleableSidebar"
+import { ShopppingCart } from "../components/ShoppingCart"
+import { LandingPage } from "../components/LandingPage"
+import { Content } from "../components/Content"
+import { useOutlet } from "react-router-dom"
+import { Fragment } from "react"
 
-export const MainLayout = ({children}:MainLayoutProps)=>{
+export const MainLayout = ()=>{
     const [contentTopPadding,setContentTopPadding] = useState<number | undefined>(0);
     useEffect(()=>{
         setContentTopPadding(navHeight);
     },[]);
-    return <div className="main-layout">
+    const outlet = useOutlet();
+    return <div className="main-layout flex flex-col h-full">
+        <ToggleableSidebar/>
+        <ShopppingCart/>
         <Navbar/>
         <div style={{paddingTop:contentTopPadding}}>
-            {children}
+            {outlet??
+                <Fragment>
+                    <LandingPage />
+                    <Content/>
+                </Fragment>
+            }
         </div>
-        <Footer/>
+        <Footer className="mt-auto"/>
     </div>
 }

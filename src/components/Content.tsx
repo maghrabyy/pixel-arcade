@@ -24,7 +24,7 @@ export const Content = ()=>{
         {img:nyanCat,category:item.ItemCategory.animals,title:'Nyan Cat', desc:"Nyan cat is a space traveller cat that's fueled by rainbows.", price:4000},
         {img:chonkyRabit,category:item.ItemCategory.animals,title:'Chonky Rabit', desc:"Chonky rabit will probably eat your food.", price:2400},
     ]
-    const foodItems = [
+    const foodItems: item.IItem[] = [
         {img:pizzaImg,category:item.ItemCategory.food,title:'Pizza Slice', desc:"Pizza slice for extra health.", price:450},
         {img:cherryImg,category:item.ItemCategory.food,title:'Cherries', desc:"Cherries will make you invalnurable.", price:600},
         {img:nightJar,category:item.ItemCategory.food,title:'Midnight Jar', desc:"Jar full of honey and magic substance.", price:800},
@@ -34,10 +34,10 @@ export const Content = ()=>{
         <TransparentContainer>
             <Reveal>
                 <SectionTitle className='text-gray-300' title='Items Shop' />
-                <Carousel slides={animalItems} sliderTitle='animals' render={(item)=><ItemCard item={item} />} />
+                <Carousel slides={animalItems} sliderTitle='animals' render={(item:item.IItem)=><ItemCard item={item} />} />
             </Reveal>
             <Reveal>
-                <Carousel slides={foodItems} loop={false} sliderTitle='food' render={(item)=><ItemCard item={item} />} />
+                <Carousel slides={foodItems} loop={false} sliderTitle='food' render={(item:item.IItem)=><ItemCard item={item} />} />
             </Reveal>           
         </TransparentContainer>
     </div>

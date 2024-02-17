@@ -5,16 +5,26 @@
 }
 
 body{
-  background-image: url(assets/images/pattern6.jpg);
+  background-image: url(assets/images/pattern.jpg);
   background-size:contain;
+}
+
+@media (min-width: 768px) {
+  body{
+      background-size: cover;
+  }
 }
 
 .nav-item{
     @apply text-white font-pixel cursor-pointer font-medium hover:text-gray-300 select-none;
 }
 
+.nav-item.active{
+  @apply border-b-2 border-white
+}
+
 .pageLink{
-  @apply cursor-pointer hover:text-gray-400;
+  @apply cursor-pointer hover:text-gray-400 select-none;
 }
 
 @keyframes inNavAnimation {

@@ -2,9 +2,10 @@ import { FaGithub, FaLinkedin } from "react-icons/fa"
 import { FaEarthAfrica } from "react-icons/fa6";
 import { SectionTitle } from "../util/SectionTitle"
 import pixelArcadeIcon from '../assets/images/objects/spaceInvader.png';
+import { Link } from "react-router-dom";
 
-export const Footer = ()=>{
-    return <div className="div bg-[url(assets/images/header.jpg)] bg-cover bg-center ">
+export const Footer = ({className}:{className?:string})=>{
+    return <div className={`div bg-[url(assets/images/header.jpg)] bg-cover bg-center ${className}`}>
             <div className="grid md:grid-cols-3 px-4 py-12 text-white font-pixel backdrop-blur-sm">
                 <div className="site-info grid grid-cols-6 gap-2">
                     <div className="site-logo col-span-1">
@@ -20,17 +21,17 @@ export const Footer = ()=>{
                 <div className="nav-links">
                     <SectionTitle title="Pages" />
                     <div className="links py-2 flex flex-col items-baseline">
-                        <div className="pageLink">Home</div>
-                        <div className="pageLink">Arcade Games</div>
-                        <div className="pageLink">My Item</div>
-                        <div className="pageLink">Items Shop</div>
-                        <div className="pageLink">About Us</div>
-                    </div>
+                        <Link to={'/'} className="pageLink">Home</Link>
+                        <Link to={'/console'} className="pageLink">Arcade Games</Link>
+                        <Link to={'/items-shop'} className="pageLink">My Item</Link>
+                        <Link to={'/my-items'} className="pageLink">Items Shop</Link>
+                        <Link to={'/aboutus'} className="pageLink">About Us</Link>
+                    </div>Link
                 </div>
                 <div className="contact">
                 <SectionTitle title="Contact" />
                     <div className="links py-2">
-                        <div>Contact us</div>
+                        <Link to={'/contact'} className="pageLink">Contact us</Link>
                         <div className="contact-links flex gap-2 py-2">
                             <FaGithub className="pageLink"/>
                             <FaLinkedin className="pageLink"/>

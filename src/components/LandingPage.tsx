@@ -17,7 +17,7 @@ export const LandingPage = ()=>{
     // console.log(navHeight)
     return <div style={{minHeight: `calc(100vh - ${navHeight}px)`,}}>
                 <TransparentContainer className='bg-[url(assets/images/header.jpg)] bg-cover bg-center'>
-                   <Reveal className='grid lg:grid-cols-4 grid-cols-1 '>
+                   <Reveal className='grid lg:grid-cols-4 grid-cols-1'>
                     <div className="text lg:text-start text-center flex flex-col gap-4 col-span-3">
                             <h1 className='sm:text-6xl text-5xl font-pixel text-white font-semibold'>Arcade Games</h1>
                             <p className='text-lg  font-pixel text-white '>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quibusdam ducimus maxime, officiis sapiente possimus accusantium, dolores nesciunt, voluptatem commodi nulla hic eaque quisquam. Dolorem earum nisi rerum atque porro optio. Exercitationem asperiores in cupiditate illo aliquam! Deleniti expedita provident iure.</p>
