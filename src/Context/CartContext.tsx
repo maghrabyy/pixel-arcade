@@ -1,10 +1,7 @@
 import {Dispatch, ReactNode,SetStateAction, createContext, useState } from "react";
-import { IItem } from "../interfaces/Item.interface";
+import { IItem, ICartItem } from "../interfaces/Item.interface";
 
-interface ICartItem {
-    selectedItem:IItem
-    quantity:number
-}
+
 
 type stateContextType = {
     userCart:Array<ICartItem>;
@@ -15,6 +12,7 @@ type stateContextType = {
     decrementQuantity:(item:IItem)=>void;
     showCart:boolean;
     setShowCart:Dispatch<SetStateAction<boolean>>
+    emptyCart:()=>void;
 }
 const CartContext = createContext<stateContextType>(null as unknown as stateContextType);
 
@@ -22,7 +20,7 @@ export const CartProvider = ({children}:{children:ReactNode})=>{
     const [userCart,setUserCart] = useState(Array<ICartItem>);
     const [showCart,setShowCart] = useState(false);
     const addItemToCart = (item:IItem)=> {
-        if(!userCart.map(cartItem=>cartItem.selectedItem).includes(item)){
+        if(!userCart.map(cartItem=>cartItem.selectedItem.img).includes(item.img)){
             const cartsArray = [...userCart,{selectedItem:item,quantity:1}]
             setUserCart(cartsArray);
         }
@@ -46,6 +44,9 @@ export const CartProvider = ({children}:{children:ReactNode})=>{
             setUserCart(cartsArray);
         }
     }
+    const emptyCart = ()=>{
+        setUserCart([]);
+    }
     const valueToShare = {
         userCart,
         setUserCart,
@@ -54,7 +55,8 @@ export const CartProvider = ({children}:{children:ReactNode})=>{
         incrementQuantity,
         decrementQuantity,
         showCart,
-        setShowCart
+        setShowCart,
+        emptyCart
     }
     return <CartContext.Provider value={valueToShare}>
             {children}        

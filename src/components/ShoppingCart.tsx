@@ -7,6 +7,7 @@ import staticCoin from '../assets/images/objects/staticcoin.png';
 import { Button } from "../util/Button";
 import { FaArrowRight } from "react-icons/fa";
 import { FaTrashAlt } from "react-icons/fa";
+import UserItemsContext from "../Context/UserItemsContext";
 
 export const ShopppingCart = ()=>{
     const mountedStyle = { animation: "inShoppingCartAnimation 300ms ease-in" };
@@ -14,13 +15,17 @@ export const ShopppingCart = ()=>{
     animation: "outShoppingCartAnimation 340ms ease-out",
     animationFillMode: "forwards"
     };
-    const { userCart, showCart,setShowCart, removeItemFromCart, incrementQuantity, decrementQuantity } = useContext(CartContext);
-    const { userCoins } = useContext(CoinsContext);
+    const { userCart, showCart,setShowCart, removeItemFromCart, incrementQuantity, decrementQuantity, emptyCart } = useContext(CartContext);
+    const { userCoins, payWithCoins } = useContext(CoinsContext);
+    const { addItems } = useContext(UserItemsContext)
     const totalCartAmount = userCart.reduce((a,b)=>a+(b.selectedItem.price*b.quantity),0);
     const checkoutHandler = ()=>{
-            if(userCoins >=  totalCartAmount){
-
-            }
+        if(userCoins >=  totalCartAmount){
+            addItems(userCart);
+            payWithCoins(totalCartAmount);
+            setShowCart(false);
+            emptyCart();
+        }
     }
     useEffect(() => {
         if(showCart){
@@ -29,7 +34,7 @@ export const ShopppingCart = ()=>{
             document.body.style.overflow = 'unset';
         }
      }, [showCart]);
-    return showCart ? <div className="shopping-cart backdrop-blur-sm fixed w-full h-full z-50">
+    return showCart ? <div className="shopping-cart backdrop-blur-sm fixed w-full h-full z-50 select-none">
         <div onClick={()=>setShowCart(false)} className="overlay fixed z-30 h-full w-full bg-gray-400 opacity-35 cursor-pointer"></div>
         <div style={showCart? mountedStyle : unmountedStyle} className="fixed top-0 right-0 w-5/6 sm:w-4/6 md:w-1/2 h-full z-40 bg-[#10021d] opacity-95 px-4 py-2 flex flex-col justifys-between">
             <div className="cart-header flex items-center justify-between text-white sm:text-4xl text-3xl font-pixel pt-2 pb-4">
@@ -52,7 +57,7 @@ export const ShopppingCart = ()=>{
                                 </div>
                                 <div className="item-desc text-gray-300">{item.selectedItem.desc}</div>
                                 <div className="cart-action flex items-center justify-between pe-2">
-                                    <div className="item-quantity select-none flex items-center gap-4 mt-2">
+                                    <div className="item-quantity flex items-center gap-4 mt-2">
                                         <FaChevronLeft onClick={()=>decrementQuantity(item.selectedItem)} className="cursor-pointer hover:text-gray-400" />
                                         <div className="quantity">{item.quantity}</div>
                                         <FaChevronRight onClick={()=>incrementQuantity(item.selectedItem)} className="cursor-pointer hover:text-gray-400" />
