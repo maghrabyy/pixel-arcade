@@ -1,5 +1,5 @@
 import './App.css';
-import { MainLayout } from './layout/Main-Layout';
+import { RootLayout } from './layout/RootLayout';
 import { ArcadeConsolePage } from './pages/Console Page/ConsolePage';
 import { ItemsShopPage } from './pages/Items Shop Page/ItemsShopPage';
 import { MyItemsPage } from './pages/My Items Page/MyItemsPage';
@@ -10,7 +10,7 @@ import { createBrowserRouter, RouterProvider, Route, createRoutesFromElements } 
 
 function App() {
   const router = createBrowserRouter(createRoutesFromElements(
-    <Route path='/' element={<MainLayout/>}>
+    <Route path='/' element={<RootLayout/>}>
       <Route path='/console' element={<ArcadeConsolePage/>} />
       <Route path='/items-shop' element={<ItemsShopPage/>} />
       <Route path='/my-items' element={<MyItemsPage/>} />
