@@ -19,7 +19,7 @@ function App() {
     </Route>
   ))
   return (
-    <div className={`App bg-[url(assets/images/header.jpg)] bg-cover bg-center md:bg-top bg-fixed`}>
+    <div className={`App bg-[url(assets/images/header.jpg)] bg-cover bg-center md:bg-top`}>
         <RouterProvider router={router} />
     </div>
   );    
