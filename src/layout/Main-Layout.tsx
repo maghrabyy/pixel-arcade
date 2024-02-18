@@ -1,13 +1,12 @@
 import { useState,useEffect } from "react"
 import { Navbar } from "../components/navbar"
 import { navHeight } from "../components/navbar"
-import { Footer } from "../components/Footer"
+// import { Footer } from "../components/Footer"
 import { ToggleableSidebar } from "../components/ToggleableSidebar"
 import { ShopppingCart } from "../components/ShoppingCart"
-import { LandingPage } from "../components/LandingPage"
-import { Content } from "../components/Content"
+import { LandingPage } from "../pages/Landing Page/LandingPage"
 import { useOutlet } from "react-router-dom"
-import { Fragment } from "react"
+// import { navHeight } from "../components/navbar"
 
 export const MainLayout = ()=>{
     const [contentTopPadding,setContentTopPadding] = useState<number | undefined>(0);
@@ -21,12 +20,9 @@ export const MainLayout = ()=>{
         <Navbar/>
         <div style={{paddingTop:contentTopPadding}}>
             {outlet??
-                <Fragment>
-                    <LandingPage />
-                    <Content/>
-                </Fragment>
+                <LandingPage />
             }
         </div>
-        <Footer className="mt-auto"/>
+        {/* <Footer className="mt-auto"/> */}
     </div>
 }

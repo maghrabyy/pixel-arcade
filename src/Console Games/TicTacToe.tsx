@@ -226,8 +226,8 @@ export const TicTacToe = ()=>{
         setCurrentWinner(INITIAL_CURRENT_WINNER);
     }
     return gameState === GameState.mainMenu?
-    <div className="main-menu bg-gradient-to-r from-cyan-800 to-blue-900 w-full h-full p-1">
-        <div className="h-full flex flex-col gap-2">
+    <div className="main-menu bg-gradient-to-r from-[#373438] to-black w-full h-full p-1">
+        <div className="h-full flex flex-col gap-2 text-gray-300">
             <h1 className="font-bold font-righteous text-4xl text-center mt-2">Tic Tac Toe</h1>
             <div className="start-game-amount flex justify-center gap-1">
                 <p className="font-pixel text-lg font-medium">Start game for {START_GAME_AMOUNT}</p>
@@ -239,26 +239,26 @@ export const TicTacToe = ()=>{
             </div>
         </div>
     </div>
-    : <div className="game bg-blue-900 w-full h-full p-1">
+    : <div className="game bg-gradient-to-r from-[#373438] to-black w-full h-full p-1">
         <div className="tic-tac-toe relative">
-            {!(gameState === GameState.playing) && <div className="gameover-screen absolute w-full select-none text-center px-2 py-4 rounded-md bg-black bg-opacity-75 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-                <h1 className="text-white text-4xl font-bold font-pixel">
+            {!(gameState === GameState.playing) && <div className="gameover-screen absolute w-full select-none text-center px-2 py-4 rounded-md bg-white bg-opacity-85 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
+                <h1 className="text-4xl font-bold font-pixel">
                     {userHealth> 0? (gameState === GameState.win && (gameMode === GameMode.twoPlayers? `${currentWinner?.playerName} won` : "You're a winner!") ) ||
                     (gameState === GameState.lose && "You lost!") ||
                     (gameState === GameState.draw && "Game Draw."): "Gameover."}</h1>
                 {userHealth > 0?
                 <div className="game-end-screen">
                     {gameState === GameState.win? null : <div className="start-game-amount flex justify-center gap-1">
-                        <p className="font-pixel text-lg text-white font-medium">replay for {START_GAME_AMOUNT}</p>
+                        <p className="font-pixel text-lg font-medium">replay for {START_GAME_AMOUNT}</p>
                         <img src={staticCoin} width={28} alt="static pixel coin" />
                     </div>}
                     <div className="flex justify-center gap-4">
-                        <h1 onClick={goToMainMenuHandler} className="text-white text-2xl mt-2 font-bold font-pixel cursor-pointer inline-block hover:text-red-700">Main Menu</h1>
-                        <h1 onClick={replayClickedHandler} className="text-white text-2xl mt-2 font-bold font-pixel cursor-pointer inline-block hover:text-green-800">Replay</h1>
+                        <h1 onClick={goToMainMenuHandler} className="text-2xl mt-2 font-bold font-pixel cursor-pointer inline-block hover:text-red-700">Main Menu</h1>
+                        <h1 onClick={replayClickedHandler} className="text-2xl mt-2 font-bold font-pixel cursor-pointer inline-block hover:text-green-800">Replay</h1>
                     </div>
                 </div> :
                 <div className="recharge-lives flex justify-center gap-2">
-                    <h1 onClick={rechargeLives} className="text-white text-2xl mt-2 font-bold cursor-pointer inline-block hover:text-gray-500">Recharge lives with {RECHARGE_LIVES_AMOUNT}</h1>
+                    <h1 onClick={rechargeLives} className="text-2xl mt-2 font-bold cursor-pointer inline-block hover:text-gray-500">Recharge lives with {RECHARGE_LIVES_AMOUNT}</h1>
                     <img src={spinningCoin}  width={20} alt="pixel coin" />
                 </div>}
             </div>}
@@ -277,8 +277,8 @@ type TicTacToeCellProps={
     playerFreeze:boolean
 }
 const TicTacToeCell = ({onClick,cellItem,playerFreeze}: TicTacToeCellProps)=>{
-    return <div onClick={onClick} className={`cols shadow-md rounded-sm flex items-center justify-center h-[75px] bg-blue-700 ${!playerFreeze && 'hover:bg-blue-800 cursor-pointer'} select-none`}>
-        <div className="player-action text-4xl font-bold font-righteous">{cellItem}</div>
+    return <div onClick={onClick} className={`cols shadow-md rounded-sm flex items-center justify-center h-[75px] bg-black opacity-55 ${!playerFreeze && 'hover:bg-gray-800 cursor-pointer'} select-none`}>
+        <div className="player-action text-4xl font-bold font-righteous text-white">{cellItem}</div>
     </div>
 
 }

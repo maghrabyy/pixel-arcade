@@ -16,7 +16,7 @@ import nightJar from '../assets/images/objects/pixelnightjar.png';
 import * as item from '../interfaces/Item.interface';
 
 
-export const Content = ()=>{
+export const ItemsShop = ()=>{
     const animalItems: item.IItem[] = [
         {img:sleepyCat,category:item.ItemCategory.animals,title:'Sleepy Cat', desc:"Lazy sleepy cat that snores loudly.", price:1400},
         {img:cryingCat,category:item.ItemCategory.animals,title:'Crying Cat', desc:"Weeping cat that's so sensitive.", price:1600},

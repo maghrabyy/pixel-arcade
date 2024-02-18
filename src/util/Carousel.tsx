@@ -18,22 +18,22 @@ type ICarousel = {
     sliderTitle:string
     render:(item:any)=>JSX.Element
     slidesNum?:breakPoints
+    spaceBetween?:breakPoints
 }
-
-
 
 export const Carousel = ({
     slides,
     loop = true,
     sliderTitle,
     render,
-    slidesNum = {lg:4,md:3,mobile:2}
+    slidesNum = {lg:4,md:3,mobile:2},
+    spaceBetween = {lg:10,md:5,mobile:5}
     }:ICarousel)=>{
     const swiperOptions = {
-        1024:{slidesPerView:slidesNum!.lg,spaceBetween:25},
-        768:{slidesPerView:slidesNum!.md,spaceBetween:20},
+        1024:{slidesPerView:slidesNum.lg,spaceBetween:spaceBetween.lg},
+        768:{slidesPerView:slidesNum.md,spaceBetween:spaceBetween.md},
     }
-    const mainSwiper = {slidesPerView:slidesNum!.mobile,spaceBetween:15}
+    const mainSwiper = {slidesPerView:slidesNum.mobile,spaceBetween:spaceBetween.mobile}
     return <div className="swiper-main relative my-4">
     <i className={`icon-arrow-long-left ${sliderTitle}-swiper-button-prev z-10 hidden md:block absolute text-5xl top-1/2 -translate-y-1/2 cursor-pointer hover:text-gray-400`}><FaChevronLeft /></i>
     <div className="swiper-container md:px-14">
@@ -52,7 +52,7 @@ export const Carousel = ({
             }}
             modules={[ Pagination,Navigation]}>
                 {slides.map(((item,index)=>{
-                    return <SwiperSlide key={index}> {render(item)}</SwiperSlide>
+                    return <SwiperSlide key={index}>{render(item)}</SwiperSlide>
                 }))}
         </Swiper>
     </div>
