@@ -16,7 +16,6 @@ export const LandingPage = ()=>{
         {text:'Buy Items', imgSrc:pixelPizza, onClick:()=>{navigate('/items-shop')}},
         {text:'Show Items', imgSrc:spaceInvader, onClick:()=>{navigate('/my-items')}},
     ]
-    // console.log(navHeight)
     return <div style={{minHeight: `calc(100vh - ${navHeight}px)`,}}>
                 <TransparentContainer>
                    <Reveal className='grid lg:grid-cols-4 grid-cols-1'>

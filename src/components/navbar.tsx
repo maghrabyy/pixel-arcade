@@ -4,11 +4,14 @@ import pixelCoin from '../assets/images/objects/pixelcoin.png';
 import rainbowSkull from '../assets/images/objects/pixelrainbowskull.png';
 import HealthContext from '../Context/HealthContext';
 import CoinsContext from '../Context/CoinsContext';
+import UserContext from '../Context/UserContext';
 import { RxHamburgerMenu } from "react-icons/rx";
 import NavContext from '../Context/NavContext';
 import { FaShoppingBasket } from "react-icons/fa";
 import CartContext from '../Context/CartContext';
 import { NavLink } from 'react-router-dom';
+import { Avatar } from '@mui/material';
+import Tooltip from '@mui/material/Tooltip';
 export let navHeight: number | undefined;
 
 export const Navbar = ()=>{
@@ -16,6 +19,7 @@ export const Navbar = ()=>{
     const { userCoins } = useContext(CoinsContext);
     const { setShowNav } = useContext(NavContext);
     const { userCart,setShowCart } = useContext(CartContext);
+    const { userAvatar, displayName } = useContext(UserContext);
     const [ coinsEffects, setCoinsEffect ] = useState(false);
     const [ heartsEffect, setHeartsEffect ] = useState(false);
     const [ navbarColor,setNavbarColor ] = useState('bg-transparent');
@@ -58,16 +62,26 @@ export const Navbar = ()=>{
             <NavLink to={'/my-items'} className="nav-item">My Items</NavLink >
             <NavLink to={'/aboutus'} className="nav-item">About</NavLink >
         </div>
-        <div className="account-menu">
-            <div className="use-coin flex gap-2 items-center">
-                <div className={`coins font-pixel text-white text-lg ${coinsEffects &&  `text-xl text-green-700`}`}>{userCoins}</div>
-                <img src={pixelCoin} width={30} alt="pixel coin" />
-                <div onClick={()=>setShowCart(true)} className="shopping-cart relative p-2 cursor-pointer rounded-lg hover:bg-gray-700 hover:bg-opacity-35">
-                    <div className="cart-badge absolute rounded-full px-2 py-[0.15rem] bg-red-600 shadow-md text-center text-white text-xs top-[-0.4rem] right-[-0.2rem]">{userCart.length}</div>
-                    <FaShoppingBasket className='text-white text-xl'/>
+        <div className="account-menu flex gap-2 items-center">
+            <div className="user-info flex items-center gap-2">
+                <div className="flex-col">
+                    <p className='rand-user-name text-white font-pixel text-lg hidden xl:block'>{displayName}</p>
+                    <div className="flex gap-2 justify-end">
+                        <div className={`coins font-pixel xl:text-white text-gray-300 text-lg xl:text-base ${coinsEffects &&  `text-xl xl:text-lg text-green-700`}`}>{userCoins}</div>
+                        <img src={pixelCoin} width={20} alt="pixel coin" />
+                    </div>
                 </div>
+                <Tooltip title={displayName}>
+                    <div className="avatar-img hidden md:block">
+                        <Avatar className="bg-white pt-2" src={userAvatar} alt="user avatar" />
+                    </div>
+                </Tooltip>
+            </div>
+            <div onClick={()=>setShowCart(true)} className="shopping-cart relative p-2 cursor-pointer rounded-lg hover:bg-gray-700 hover:bg-opacity-35">
+                <div className="cart-badge absolute rounded-full px-2 py-[0.15rem] bg-red-600 shadow-md text-center text-white text-xs top-[-0.4rem] right-[-0.2rem]">{userCart.length}</div>
+                <FaShoppingBasket className='text-white text-xl'/>
             </div>
         </div>
- 
+
     </div>
 }
