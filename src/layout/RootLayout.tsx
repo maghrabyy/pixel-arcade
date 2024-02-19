@@ -4,7 +4,7 @@ import { ToggleableSidebar } from "../components/ToggleableSidebar"
 import { ShopppingCart } from "../components/ShoppingCart"
 import { LandingPage } from "../pages/Landing Page/LandingPage"
 import { useOutlet } from "react-router-dom"
-import { useNavHeight } from "../util/Custom Hooks/useNavHeight"
+import { useNavHeight } from "../Custom Hooks/useNavHeight"
 
 export const RootLayout = ()=>{
     const navHeight = useNavHeight();

@@ -1,5 +1,5 @@
 import { ItemsShop } from "../../components/ItemsShop"
-import { useNavHeight } from "../../util/Custom Hooks/useNavHeight"
+import { useNavHeight } from "../../Custom Hooks/useNavHeight"
 
 export const ItemsShopPage = ()=>{
     const navHeight = useNavHeight();

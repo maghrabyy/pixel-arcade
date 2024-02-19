@@ -1,6 +1,6 @@
 import { TicTacToe } from "../../Console Games/TicTacToe"
 import { Reveal } from "../../util/Reveal";
-import { useNavHeight } from "../../util/Custom Hooks/useNavHeight";
+import { useNavHeight } from "../../Custom Hooks/useNavHeight";
 
 export const ArcadeConsolePage = ()=>{
   const navHeight = useNavHeight();
