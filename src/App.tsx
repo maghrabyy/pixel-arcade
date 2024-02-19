@@ -4,7 +4,6 @@ import { ArcadeConsolePage } from './pages/Console Page/ConsolePage';
 import { ItemsShopPage } from './pages/Items Shop Page/ItemsShopPage';
 import { MyItemsPage } from './pages/My Items Page/MyItemsPage';
 import { AboutUsPage } from './pages/Aboutus Page/AboutUsPage';
-import { ContactPage } from './pages/Contact Page/ContactPage';
 import { CustomAlert } from './util/Alert';
 
 import { createBrowserRouter, RouterProvider, Route, createRoutesFromElements } from 'react-router-dom';
@@ -16,7 +15,6 @@ function App() {
       <Route path='/items-shop' element={<ItemsShopPage/>} />
       <Route path='/my-items' element={<MyItemsPage/>} />
       <Route path='/aboutus' element={<AboutUsPage/>} />
-      <Route path='/contact' element={<ContactPage/>} />
     </Route>
   ))
   return (

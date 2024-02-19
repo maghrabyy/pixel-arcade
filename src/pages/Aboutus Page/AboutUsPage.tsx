@@ -23,13 +23,14 @@ export const AboutUsPage = ()=>{
         <div className="about-me flex sm:items-stretch items-center py-4">
             <TransparentContainer expanded={false} className="sm:h-full">
                 <Reveal className="flex flex-col items-center gap-4 h-full">
-                    <div className="first-section flex flex-col items-center">
-                        <div className="avatar-container border-4 border-white rounded-full">
+                    <div className="first-section flex flex-col gap-1 items-center">
+                        <div className="avatar-container border-4 mb-2 border-white rounded-full">
                             <Avatar src={maghrabyImg} sx={{width:150,height:150}} alt="Mahmoud Elmaghraby" />
                         </div>
                         <h1 className="name font-righteous text-2xl font-bold text-white uppercase">Mahmoud Elmaghraby</h1>
                         <div className="title flex gap-2  font-ubuntu text-gray-300 font-semibold text-md">
                             <div className="title-1">Software Engineer</div>
+                            /
                             <div className="title-2">
                                 <span className="text-green-700">maghTech</span> Founder
                             </div>
