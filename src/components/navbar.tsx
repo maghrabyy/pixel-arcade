@@ -15,30 +15,16 @@ import Tooltip from '@mui/material/Tooltip';
 export let navHeight: number | undefined;
 
 export const Navbar = ()=>{
-    const { userHealth } = useContext(HealthContext);
+    const { userHealth, refillHealtherTimer } = useContext(HealthContext);
     const { userCoins } = useContext(CoinsContext);
     const { setShowNav } = useContext(NavContext);
     const { userCart,setShowCart } = useContext(CartContext);
     const { userAvatar, displayName } = useContext(UserContext);
-    const [ coinsEffects, setCoinsEffect ] = useState(false);
-    const [ heartsEffect, setHeartsEffect ] = useState(false);
     const [ navbarColor,setNavbarColor ] = useState('bg-transparent');
     const navRef = useRef<HTMLDivElement>(null);   
     useEffect(()=>{
         navHeight = navRef.current?.clientHeight
     },[]);
-    useEffect(()=>{
-        setCoinsEffect(true);
-        setTimeout(()=>{
-            setCoinsEffect(false);
-        },500);
-    },[userCoins])
-    useEffect(()=>{
-        setHeartsEffect(true);
-        setTimeout(()=>{
-            setHeartsEffect(false);
-        },300);
-    },[userHealth])
     const navbarColorChangeHandler = ()=>{
         if(window.scrollY >= navHeight!){
             setNavbarColor('bg-[#10021d] bg-opacity-75 backdrop-blur-sm shadow-md')
@@ -51,8 +37,14 @@ export const Navbar = ()=>{
         <div className="nav-health flex gap-3 items-center">
             <RxHamburgerMenu onClick={()=>setShowNav(true)} className='text-2xl block md:hidden text-white hover:text-gray-400 cursor-pointer' />
             <div className="health-bar flex gap-2">
-                {userHealth > 0? Array.from(Array(userHealth), (_, i) => <img key={i} src={pixelHeart} width={heartsEffect? 45 : 40} alt="pixel heart" />):
-                <img src={rainbowSkull} width={30} alt="rainbow skull" />}
+                {
+                userHealth > 0? Array.from(Array(userHealth), (_, i) => <img key={i} src={pixelHeart} width={40} alt="pixel heart" />)
+                :
+                <div className="zero-health flex items-center gap-2">
+                    <img src={rainbowSkull} width={30} alt="rainbow skull" />
+                    <p className='text-white font-pixel'>{refillHealtherTimer.minutes} : {refillHealtherTimer.seconds}</p>    
+                </div>
+                }
             </div>
         </div>
         <div className="md:flex hidden nav-menu gap-3">
@@ -67,7 +59,7 @@ export const Navbar = ()=>{
                 <div className="flex-col">
                     <p className='rand-user-name text-white font-pixel text-lg hidden xl:block'>{displayName}</p>
                     <div className="flex gap-2 justify-end">
-                        <div className={`coins font-pixel xl:text-white text-gray-300 text-lg xl:text-base ${coinsEffects &&  `text-xl xl:text-lg text-green-700`}`}>{userCoins}</div>
+                        <div className={`coins font-pixel xl:text-white text-gray-300 text-lg xl:text-base`}>{userCoins}</div>
                         <img src={pixelCoin} width={20} alt="pixel coin" />
                     </div>
                 </div>

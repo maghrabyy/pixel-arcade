@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, useRef } from "react";
 import HealthContext  from "../Context/HealthContext";
 import CoinsContext from "../Context/CoinsContext";
 import coinSound from '../assets/sounds/collectcoin.wav';
@@ -37,7 +37,7 @@ export const TicTacToe = ()=>{
     const INITIAL_PREV_PLAYER = null;
     const INITIAL_CURRENT_WINNER = null;
 
-    const { userHealth, setUserHealth } = useContext(HealthContext);
+    const { userHealth, refillHealth,setUserHealth } = useContext(HealthContext);
     const { userCoins,payWithCoins, addCoins} = useContext(CoinsContext)
     interface ITicTacToeCell{
         cellNo:number
@@ -132,8 +132,9 @@ export const TicTacToe = ()=>{
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[gameState])
 
+    const clickedTimeout = useRef<NodeJS.Timeout | null>(null);
     const cellClickedHandler = (index:number)=>{
-        if((gameState === GameState.playing)){
+        if(gameState === GameState.playing){
             if(gameMode === GameMode.twoPlayers) {
                 setPrevPlayer(currentPlayer);
                 if(JSON.stringify(currentPlayer) === JSON.stringify(player1))
@@ -149,11 +150,11 @@ export const TicTacToe = ()=>{
                         setTicTacToeCells(currentCells);
                         if(gameMode === GameMode.onePlayer){
                             setFreezePlayer(true);
-                            setTimeout(()=>{
+                            clickedTimeout.current = setTimeout(()=>{
                                 setPcTurn(true);
                                 setFreezePlayer(false);
-                            }
-                            ,1000)  
+                            }                          
+                            ,1000);
                         }
                     }                    
                 }
@@ -161,6 +162,14 @@ export const TicTacToe = ()=>{
         }
     }
 
+    useEffect(()=>{
+        if(gameState !== GameState.playing){
+            setFreezePlayer(true);
+            clearInterval(clickedTimeout.current as NodeJS.Timeout);
+        }else{
+            setFreezePlayer(false);
+        }
+    },[gameState])
 
     useEffect(()=>{
         if(gameMode === GameMode.onePlayer){
@@ -197,7 +206,7 @@ export const TicTacToe = ()=>{
     }
     const rechargeLives = ()=>{
         if(userCoins >= RECHARGE_LIVES_AMOUNT){
-            setUserHealth(4);
+            refillHealth();
             payWithCoins(RECHARGE_LIVES_AMOUNT);
         }
     }
@@ -226,7 +235,7 @@ export const TicTacToe = ()=>{
         setCurrentWinner(INITIAL_CURRENT_WINNER);
     }
     return gameState === GameState.mainMenu?
-    <div className="main-menu bg-gradient-to-r from-[#373438] to-black w-full h-full p-1">
+    <div className="main-menu bg-gradient-to-r from-[#373438] to-[#1e1d1f] w-full h-full p-1">
         <div className="h-full flex flex-col gap-2 text-gray-300">
             <h1 className="font-bold font-righteous text-4xl text-center mt-2">Tic Tac Toe</h1>
             <div className="start-game-amount flex justify-center gap-1">
@@ -239,7 +248,7 @@ export const TicTacToe = ()=>{
             </div>
         </div>
     </div>
-    : <div className="game bg-gradient-to-r from-[#373438] to-black w-full h-full p-1">
+    : <div className="game bg-gradient-to-r from-[#373438] to-[#1f1d1f] w-full h-full p-1">
         <div className="tic-tac-toe relative">
             {!(gameState === GameState.playing) && <div className="gameover-screen absolute w-full select-none text-center px-2 py-4 rounded-md bg-white bg-opacity-85 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
                 <h1 className="text-4xl font-bold font-pixel">
@@ -258,7 +267,7 @@ export const TicTacToe = ()=>{
                     </div>
                 </div> :
                 <div className="recharge-lives flex justify-center gap-2">
-                    <h1 onClick={rechargeLives} className="text-2xl mt-2 font-bold cursor-pointer inline-block hover:text-gray-500">Recharge lives with {RECHARGE_LIVES_AMOUNT}</h1>
+                    <h1 onClick={rechargeLives} className="text-lg sm:text-2xl mt-2 font-bold cursor-pointer inline-block hover:text-gray-500">Recharge lives with {RECHARGE_LIVES_AMOUNT}</h1>
                     <img src={spinningCoin}  width={20} alt="pixel coin" />
                 </div>}
             </div>}

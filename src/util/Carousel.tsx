@@ -35,7 +35,7 @@ export const Carousel = ({
     }
     const mainSwiper = {slidesPerView:slidesNum.mobile,spaceBetween:spaceBetween.mobile}
     return <div className="swiper-main relative my-4">
-    <i className={`icon-arrow-long-left ${sliderTitle}-swiper-button-prev z-10 hidden md:block absolute text-5xl top-1/2 -translate-y-1/2 cursor-pointer hover:text-gray-400`}><FaChevronLeft /></i>
+    <i className={`icon-arrow-long-left ${sliderTitle}-swiper-button-prev z-10 hidden md:block absolute text-5xl top-1/2 -translate-y-1/2 cursor-pointer text-white hover:text-gray-400`}><FaChevronLeft /></i>
     <div className="swiper-container md:px-14">
         <Swiper 
             slidesPerView={mainSwiper.slidesPerView} 
@@ -56,7 +56,7 @@ export const Carousel = ({
                 }))}
         </Swiper>
     </div>
-    <i className={`icon-arrow-long-right ${sliderTitle}-swiper-button-next z-10 hidden md:block absolute text-5xl right-0 top-1/2 -translate-y-1/2 cursor-pointer hover:text-gray-400`}><FaChevronRight/></i>
+    <i className={`icon-arrow-long-right ${sliderTitle}-swiper-button-next z-10 hidden md:block absolute text-5xl right-0 top-1/2 -translate-y-1/2 cursor-pointer text-white hover:text-gray-400`}><FaChevronRight/></i>
     <div className={`${sliderTitle}-pagination-div text-center mt-2`} />
 </div>
 }
