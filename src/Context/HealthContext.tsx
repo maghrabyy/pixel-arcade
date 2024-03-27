@@ -19,7 +19,7 @@ export const HealthProvider = ({children}:{children:ReactNode})=>{
     const [refillTimer,setRefillTimer] = useState(moment.duration(15, 'minutes'));
     let refillInterval = useRef<null | NodeJS.Timeout>(null);
     const resetRefillTimer = ()=>{
-        setRefillTimer(moment.duration(1, 'minutes'));
+        setRefillTimer(moment.duration(15, 'minutes'));
     }
     const refillHealth = () =>{
         resetRefillTimer();

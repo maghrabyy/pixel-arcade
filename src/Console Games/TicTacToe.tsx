@@ -235,16 +235,29 @@ export const TicTacToe = ()=>{
         setCurrentWinner(INITIAL_CURRENT_WINNER);
     }
     return gameState === GameState.mainMenu?
-    <div className="main-menu bg-gradient-to-r from-[#373438] to-[#1e1d1f] w-full h-full p-1">
-        <div className="h-full flex flex-col gap-2 text-gray-300">
-            <h1 className="font-bold font-righteous text-4xl text-center mt-2">Tic Tac Toe</h1>
-            <div className="start-game-amount flex justify-center gap-1">
-                <p className="font-pixel text-lg font-medium">Start game for {START_GAME_AMOUNT}</p>
-                <img src={staticCoin} width={28} alt="static pixel coin" />
+    <div className="main-menu bg-gradient-to-r from-[#373438] to-[#1e1d1f] w-full h-full min-h-[230px] p-1">
+        <div className="h-[230px] flex flex-col justify-between text-gray-300">
+            <div className="game-header">
+                <h1 className="font-bold font-righteous text-4xl text-center mt-2">Tic Tac Toe</h1>
+                <div className="start-game-amount flex justify-center gap-1">
+                    <p className="font-pixel text-lg font-medium">Start game for {START_GAME_AMOUNT}</p>
+                    <img src={staticCoin} width={28} alt="static pixel coin" />
+                </div>
             </div>
-            <div className="game-modes font-pixel flex flex-col gap-2 justify-center h-full">
-                <Button onClick={()=>selectGameModeHandler(GameMode.onePlayer)}>One Player</Button>
-                <Button onClick={()=>selectGameModeHandler(GameMode.twoPlayers)}>Two Players</Button>
+            <div className="game-action">
+                {userHealth === 0?           
+            <div className="recharge-lives flex justify-center gap-2 mb-3">
+                <h1
+                onClick={rechargeLives}
+                className="sm:text-2xl mt-2 font-pixel font-bold cursor-pointer inline-block hover:text-gray-500"
+                >
+                Recharge lives with {RECHARGE_LIVES_AMOUNT}
+                </h1>
+                <img src={spinningCoin} width={20} alt="pixel coin" />
+            </div>: <div className="game-modes font-pixel flex flex-col gap-2 justify-center h-full">
+                    <Button onClick={()=>selectGameModeHandler(GameMode.onePlayer)}>One Player</Button>
+                    <Button onClick={()=>selectGameModeHandler(GameMode.twoPlayers)}>Two Players</Button>
+                </div>}
             </div>
         </div>
     </div>
