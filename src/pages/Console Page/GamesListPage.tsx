@@ -7,6 +7,7 @@ import rockPaperScissorsImg from "../../assets/images/games/rockpaperscissors/ro
 import { Button } from "../../util/Button";
 import { useOutlet } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { CgGames } from "react-icons/cg";
 
 export const GamesListPage = () => {
   const navHeight = useNavHeight();
@@ -16,7 +17,7 @@ export const GamesListPage = () => {
       className="games-list flex py-4"
       style={{ minHeight: `calc(100vh - ${navHeight}px)` }}
     >
-      <TransparentContainer className="grid gap-2 grid-cols-1 sm:grid-cols-2 md:grid-cols-4 h-full">
+      <TransparentContainer className="grid gap-2 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 h-full">
         <Reveal>
         <GameCard 
                 gameImg={rockPaperScissorsImg} 
@@ -34,6 +35,12 @@ export const GamesListPage = () => {
                 gameDesc="Tic-tac-toe, noughts and crosses, or Xs and Os is a paper-and-pencil game for two players who take turns marking the spaces in a three-by-three grid with X or O."
                 gamePrice={20}
                 gameNavPath="tictactoe" />
+        </Reveal>
+        <Reveal>
+            <div className="more-games-soon flex flex-col justify-center items-center select-none bg-slate-950 bg-opacity-85 rounded-md shadow-sm h-full px-3 py-2 text-white text-center text-2xl font-pixel font-semibold">
+                <CgGames className="text-8xl"/>
+                More games soon.
+            </div>
         </Reveal>
       </TransparentContainer>
     </div>
