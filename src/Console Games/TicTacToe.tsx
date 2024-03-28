@@ -190,7 +190,7 @@ export const TicTacToe = ()=>{
 
     const replayClickedHandler = ()=>{
         if(userCoins >= START_GAME_AMOUNT){
-            if(gameState !== GameState.win){
+            if(gameState !== GameState.win && gameMode !== GameMode.twoPlayers){
                 payWithCoins(START_GAME_AMOUNT);
             }
             if(userHealth > 0){
@@ -270,7 +270,7 @@ export const TicTacToe = ()=>{
                     (gameState === GameState.draw && "Game Draw."): "Gameover."}</h1>
                 {userHealth > 0?
                 <div className="game-end-screen">
-                    {gameState === GameState.win? null : <div className="start-game-amount flex justify-center gap-1">
+                    {(gameState === GameState.win || gameMode === GameMode.twoPlayers)? null : <div className="start-game-amount flex justify-center gap-1">
                         <p className="font-pixel text-lg font-medium">replay for {START_GAME_AMOUNT}</p>
                         <img src={staticCoin} width={28} alt="static pixel coin" />
                     </div>}

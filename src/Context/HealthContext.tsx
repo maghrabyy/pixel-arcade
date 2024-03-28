@@ -42,6 +42,7 @@ export const HealthProvider = ({children}:{children:ReactNode})=>{
         }else{
             clearInterval(refillInterval.current as NodeJS.Timeout);
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[userHealth])
 
     const refillHealtherTimer:refillHealthTimerType = {
