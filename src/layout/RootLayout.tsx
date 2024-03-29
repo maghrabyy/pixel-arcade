@@ -5,10 +5,16 @@ import { ShopppingCart } from "../components/ShoppingCart"
 import { LandingPage } from "../pages/Landing Page/LandingPage"
 import { useOutlet } from "react-router-dom"
 import { useNavHeight } from "../Custom Hooks/useNavHeight"
+import { useEffect } from "react"
+import { useLocation } from "react-router-dom"
 
 export const RootLayout = ()=>{
+    const location = useLocation().pathname;
     const navHeight = useNavHeight();
     const outlet = useOutlet();
+    useEffect(()=>{
+        window.scrollTo(0,0)
+    },[location])
     return <div className="main-layout flex flex-col h-full">
         <ToggleableSidebar/>
         <ShopppingCart/>
