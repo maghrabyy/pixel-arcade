@@ -8,15 +8,11 @@ import { FaAddressCard } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import { Avatar } from "@mui/material";
 import UserContext from "../Context/UserContext";
+import {motion} from 'framer-motion';
 
 export const ToggleableSidebar = ()=>{
     const {showNav,setShowNav} = useContext(NavContext);
     const { userAvatar, displayName } = useContext(UserContext);
-    const mountedStyle = { animation: "inNavAnimation 300ms ease-in" };
-    const unmountedStyle = {
-    animation: "outNavAnimation 340ms ease-out",
-    animationFillMode: "forwards"
-    };
     useEffect(() => {
         if(showNav){
             document.body.style.overflow = 'hidden';
@@ -26,7 +22,7 @@ export const ToggleableSidebar = ()=>{
      }, [showNav]);
     return showNav? <div className={`toggle-nav fixed backdrop-blur-sm w-full h-full z-50 md:hidden`}>
         <div onClick={()=>setShowNav(false)} className="overlay fixed h-full w-full bg-gray-400 opacity-35 cursor-pointer z-30"></div>
-        <div  style={showNav? mountedStyle : unmountedStyle} className="nav-menu fixed top-0 left-0 h-full w-5/6 sm:w-4/6 md:w-1/2 z-40 opacity-95  bg-[#10021d]">
+        <motion.div  transition={{duration:0.4}} initial={{translateX:'-100%'}} animate={{translateX:0}} className="nav-menu fixed top-0 left-0 h-full w-5/6 sm:w-4/6 md:w-1/2 z-40 opacity-95  bg-[#10021d]">
             <div onClick={()=>setShowNav(false)} className="close-sidebar z-50 fixed top-3 left-5 text-white font-pixel text-4xl cursor-pointer hover:text-gray-300">X</div>
             <div className="mav-items flex flex-col gap-10 justify-center h-full">
                 <div className="user-info flex items-center border-y-2 border-white py-4 gap-4 px-6">
@@ -42,6 +38,6 @@ export const ToggleableSidebar = ()=>{
                 </div>
             </div>
 
-        </div>
+        </motion.div>
   </div> : null
 }

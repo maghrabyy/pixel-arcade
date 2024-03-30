@@ -10,13 +10,9 @@ import { FaTrashAlt } from "react-icons/fa";
 import UserItemsContext from "../Context/UserItemsContext";
 import { useAlert } from "../Context/AlertContext";
 import { BiSolidInvader } from "react-icons/bi";
-
+import { motion } from 'framer-motion';
+ 
 export const ShopppingCart = ()=>{
-    const mountedStyle = { animation: "inShoppingCartAnimation 300ms ease-in" };
-    const unmountedStyle = {
-    animation: "outShoppingCartAnimation 340ms ease-out",
-    animationFillMode: "forwards"
-    };
     const { displayAlert,insufficientCoinsAlert } = useAlert(); 
     const { userCart, showCart,setShowCart, removeItemFromCart, incrementQuantity, decrementQuantity, emptyCart } = useContext(CartContext);
     const { userCoins, payWithCoins } = useContext(CoinsContext);
@@ -42,7 +38,7 @@ export const ShopppingCart = ()=>{
      }, [showCart]);
     return showCart ? <div className="shopping-cart backdrop-blur-sm fixed w-full h-full z-50 select-none">
         <div onClick={()=>setShowCart(false)} className="overlay fixed z-30 h-full w-full bg-gray-400 opacity-35 cursor-pointer"></div>
-        <div style={showCart? mountedStyle : unmountedStyle} className="fixed top-0 right-0 w-5/6 sm:w-4/6 md:w-1/2 h-full z-40 bg-[#10021d] opacity-95 px-4 py-2 flex flex-col justifys-between">
+        <motion.div transition={{duration:0.4}} initial={{translateX:'100%'}} animate={{translateX:0}} className="fixed top-0 right-0 w-5/6 sm:w-4/6 md:w-1/2 h-full z-40 bg-[#10021d] opacity-95 px-4 py-2 flex flex-col justifys-between">
             <div className="cart-header flex items-center justify-between text-white sm:text-4xl text-3xl font-pixel pt-2 pb-4">
                 <span>Shopping Cart</span>
                 <FaShoppingBasket/>
@@ -90,7 +86,7 @@ export const ShopppingCart = ()=>{
                     <img src={staticCoin} width={40} alt="static coin" />
                 </div>
             </div> : null}
-        </div>
+        </motion.div>
     </div> 
     : null
 }
