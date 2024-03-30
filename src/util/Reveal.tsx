@@ -40,5 +40,5 @@ Reveal.defaultProps = {
     x:'0',
     y:'0',
     scale:0.5,
-    duration:0.5
+    duration:0.4
 }
