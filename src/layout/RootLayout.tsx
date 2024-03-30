@@ -1,5 +1,4 @@
 import { Navbar } from "../components/navbar"
-// import { Footer } from "../components/Footer"
 import { ToggleableSidebar } from "../components/ToggleableSidebar"
 import { ShopppingCart } from "../components/ShoppingCart"
 import { LandingPage } from "../pages/Landing Page/LandingPage"
@@ -24,6 +23,5 @@ export const RootLayout = ()=>{
                 <LandingPage />
             }
         </div>
-        {/* <Footer className="mt-auto"/> */}
     </div>
 }

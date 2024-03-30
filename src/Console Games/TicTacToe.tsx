@@ -9,6 +9,7 @@ import gameDrawSound from '../assets/sounds/gameDrawSound.wav';
 import spinningCoin from '../assets/images/objects/pixelcoin.png';
 import staticCoin from '../assets/images/objects/staticcoin.png';
 import { Button } from "../util/Button";
+import { useAlert } from "../Context/AlertContext";
 
 enum GameState{mainMenu="mainMenu", playing="playing",win="win",lose="lose",draw="draw"}
 enum GameMode{onePlayer="onePlayer",twoPlayers="twoPlayers"}
@@ -37,6 +38,7 @@ export const TicTacToe = ()=>{
     const INITIAL_PREV_PLAYER = null;
     const INITIAL_CURRENT_WINNER = null;
 
+    const { playerWonAlert, playerLostAlert} = useAlert()
     const { userHealth, refillHealth,setUserHealth } = useContext(HealthContext);
     const { userCoins,payWithCoins, addCoins} = useContext(CoinsContext)
     interface ITicTacToeCell{
@@ -114,6 +116,7 @@ export const TicTacToe = ()=>{
             if(userHealth > 0){
                 setUserHealth(userHealth-1);
                 new Audio(gameLostSound).play();
+                playerLostAlert();
             }
         }
         if(gameState === GameState.draw){
@@ -123,6 +126,7 @@ export const TicTacToe = ()=>{
             if(gameMode === GameMode.onePlayer){
                 new Audio(coinSound).play();
                 addCoins(PLAYER_WIN_AMOUNT);
+                playerWonAlert(PLAYER_WIN_AMOUNT);
             }
             if(gameMode === GameMode.twoPlayers){
                 new Audio(gameWinSound).play();

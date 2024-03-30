@@ -14,7 +14,7 @@ export const GamesListPage = () => {
   const outlet = useOutlet();
   return (
     outlet ?? <div
-      className="games-list flex py-4"
+      className="games-list flex py-2"
       style={{ minHeight: `calc(100vh - ${navHeight}px)` }}
     >
       <TransparentContainer className="grid gap-2 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 h-full">

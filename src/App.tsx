@@ -3,7 +3,6 @@ import { RootLayout } from './layout/RootLayout';
 import { ItemsShopPage } from './pages/Items Shop Page/ItemsShopPage';
 import { MyItemsPage } from './pages/My Items Page/MyItemsPage';
 import { AboutUsPage } from './pages/Aboutus Page/AboutUsPage';
-import { CustomAlert } from './util/Alert';
 import { GamesListPage } from './pages/Console Page/GamesListPage';
 import { ArcadeConsolePage } from './pages/Console Page/ConsolePage';
 import { TicTacToe } from './Console Games/TicTacToe';
@@ -25,7 +24,6 @@ function App() {
   ))
   return (
     <div className={`App bg-[url(assets/images/header.jpg)] bg-cover bg-center md:bg-top`}>
-        <CustomAlert/>
         <RouterProvider router={router} />
     </div>
   );    

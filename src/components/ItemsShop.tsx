@@ -30,7 +30,7 @@ export const ItemsShop = ()=>{
         {img:nightJar,category:item.ItemCategory.food,title:'Midnight Jar', desc:"Jar full of honey and magic substance.", price:800},
     ]
 
-    return <div className="py-4">
+    return <div className="py-2">
         <TransparentContainer>
             <Reveal>
                 <SectionTitle className='text-gray-300' title='Items Shop' />
@@ -38,7 +38,7 @@ export const ItemsShop = ()=>{
             </Reveal>
             <Reveal>
                 <Carousel slides={foodItems} loop={false} sliderTitle='food' render={(item:item.IItem)=><ItemCard item={item} />} />
-            </Reveal>           
+            </Reveal>
         </TransparentContainer>
     </div>
 }

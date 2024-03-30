@@ -10,7 +10,7 @@ import spaceInvader from '../../assets/images/objects/spaceInvader.png';
 export const MyItemsPage = ()=>{
     const  { userItems } = useContext(UserItemsContext);
     const navHeight = useNavHeight();
-    return <div className="flex justify-center py-4" style={{minHeight: `calc(100vh - ${navHeight}px) `,}}>
+    return <div className="flex justify-center py-2" style={{minHeight: `calc(100vh - ${navHeight}px) `,}}>
         <TransparentContainer className="h-full">
             <Reveal>  
                 <SectionTitle title="My Items" className="text-white mb-4" />

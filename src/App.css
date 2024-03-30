@@ -89,3 +89,21 @@
     }
   }
 
+@keyframes inAlertAnimation {
+  0%{
+    transform: translateY(-100%);
+  }
+  100%{
+    transform: translateY(0);
+  } 
+}
+
+@keyframes outAlertAnimation {
+  0%{
+    transform: translateY(0);
+  }
+  100%{
+    transform: translateY(-100%);
+  } 
+}
+

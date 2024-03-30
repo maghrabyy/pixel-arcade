@@ -8,6 +8,8 @@ import { Button } from "../util/Button";
 import { FaArrowRight } from "react-icons/fa";
 import { FaTrashAlt } from "react-icons/fa";
 import UserItemsContext from "../Context/UserItemsContext";
+import { useAlert } from "../Context/AlertContext";
+import { BiSolidInvader } from "react-icons/bi";
 
 export const ShopppingCart = ()=>{
     const mountedStyle = { animation: "inShoppingCartAnimation 300ms ease-in" };
@@ -15,6 +17,7 @@ export const ShopppingCart = ()=>{
     animation: "outShoppingCartAnimation 340ms ease-out",
     animationFillMode: "forwards"
     };
+    const { displayAlert,insufficientCoinsAlert } = useAlert(); 
     const { userCart, showCart,setShowCart, removeItemFromCart, incrementQuantity, decrementQuantity, emptyCart } = useContext(CartContext);
     const { userCoins, payWithCoins } = useContext(CoinsContext);
     const { addItems } = useContext(UserItemsContext)
@@ -25,6 +28,9 @@ export const ShopppingCart = ()=>{
             payWithCoins(totalCartAmount);
             setShowCart(false);
             emptyCart();
+            displayAlert("You've successfully purchased new item(s).",'success',<BiSolidInvader/>)
+        }else{
+            insufficientCoinsAlert()
         }
     }
     useEffect(() => {

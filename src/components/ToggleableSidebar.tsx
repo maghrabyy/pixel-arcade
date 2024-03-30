@@ -4,7 +4,7 @@ import { IoGameController } from "react-icons/io5";
 import { FaShoppingBag } from "react-icons/fa";
 import { IoHome } from "react-icons/io5";
 import { BiSolidInvader } from "react-icons/bi";
-import { FaPersonCircleQuestion } from "react-icons/fa6";
+import { FaAddressCard } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import { Avatar } from "@mui/material";
 import UserContext from "../Context/UserContext";
@@ -38,7 +38,7 @@ export const ToggleableSidebar = ()=>{
                     <NavLink to={'/console'} onClick={()=>setShowNav(false)} className="nav-item ps-2 flex justify-between gap-2"><span>Arcade</span><IoGameController/></NavLink>
                     <NavLink to={'/items-shop'} onClick={()=>setShowNav(false)} className="nav-item ps-2 flex justify-between gap-2"><span>Items Shop</span><FaShoppingBag/></NavLink>
                     <NavLink to={'/my-items'} onClick={()=>setShowNav(false)} className="nav-item ps-2 flex justify-between gap-2"><span>My Items</span><BiSolidInvader/></NavLink>
-                    <NavLink to={'/aboutus'} onClick={()=>setShowNav(false)} className="nav-item ps-2 flex justify-between gap-2"><span>About</span><FaPersonCircleQuestion/></NavLink>
+                    <NavLink to={'/aboutus'} onClick={()=>setShowNav(false)} className="nav-item ps-2 flex justify-between gap-2"><span>About</span><FaAddressCard/></NavLink>
                 </div>
             </div>
 

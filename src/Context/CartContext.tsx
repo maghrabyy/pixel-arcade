@@ -1,7 +1,7 @@
 import {Dispatch, ReactNode,SetStateAction, createContext, useState } from "react";
 import { IItem, ICartItem } from "../interfaces/Item.interface";
-
-
+import { useAlert } from "./AlertContext";
+import { FaShoppingBasket } from "react-icons/fa";
 
 type stateContextType = {
     userCart:Array<ICartItem>;
@@ -17,12 +17,14 @@ type stateContextType = {
 const CartContext = createContext<stateContextType>(null as unknown as stateContextType);
 
 export const CartProvider = ({children}:{children:ReactNode})=>{
+    const {displayAlert} = useAlert();
     const [userCart,setUserCart] = useState(Array<ICartItem>);
     const [showCart,setShowCart] = useState(false);
     const addItemToCart = (item:IItem)=> {
         if(!userCart.map(cartItem=>cartItem.selectedItem.img).includes(item.img)){
             const cartsArray = [...userCart,{selectedItem:item,quantity:1}]
             setUserCart(cartsArray);
+            displayAlert(`${item.title} added to cart.`,'success',<FaShoppingBasket/>)
         }
     }
     const removeItemFromCart = (cartItem:IItem)=>{
