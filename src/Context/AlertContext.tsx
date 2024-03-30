@@ -8,6 +8,7 @@ type alertContextType = {
     insufficientCoinsAlert:()=>void
     playerWonAlert:(coinsAmount:number)=>void
     playerLostAlert:()=>void
+    healthRefillAlert:()=>void
 }
 
 const AlertContext = createContext<alertContextType>(null as unknown as alertContextType);
@@ -44,13 +45,15 @@ export const AlertProvider = ({children}:{children:ReactNode})=>{
 
     const playerWonAlert = (coinsAmount:number) => displayAlert(`+${coinsAmount}`,'success',<PiCoins/>)
     const playerLostAlert = ()=> displayAlert('-1','error',<FaHeart/>);
+    const healthRefillAlert = ()=>displayAlert('+4','success',<FaHeart/>)
     const insufficientCoinsAlert = ()=> displayAlert('You have insufficient pixel coins','warning',<PiCoins/>);
 
     const valueToShare = {
         insufficientCoinsAlert,
         displayAlert,
         playerWonAlert,
-        playerLostAlert
+        playerLostAlert,
+        healthRefillAlert
     }
     return <AlertContext.Provider value={valueToShare}>
         <CustomAlert showAlert={showAlert}

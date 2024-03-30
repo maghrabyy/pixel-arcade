@@ -1,5 +1,6 @@
 import { Dispatch, ReactNode,SetStateAction,createContext,useState, useEffect, useRef } from "react"
 import moment from "moment";
+import { useAlert } from "./AlertContext";
 
 type refillHealthTimerType = {
     minutes:number | string;
@@ -15,6 +16,7 @@ type stateContextType = {
 const HealthContext = createContext<stateContextType>(null as unknown as stateContextType);
 
 export const HealthProvider = ({children}:{children:ReactNode})=>{
+    const { healthRefillAlert } = useAlert();
     const [userHealth,setUserHealth] = useState(4);
     const [refillTimer,setRefillTimer] = useState(moment.duration(15, 'minutes'));
     let refillInterval = useRef<null | NodeJS.Timeout>(null);
@@ -24,6 +26,7 @@ export const HealthProvider = ({children}:{children:ReactNode})=>{
     const refillHealth = () =>{
         resetRefillTimer();
         setUserHealth(4);
+        healthRefillAlert();
     }
     useEffect(()=>{
         if(userHealth === 0){
