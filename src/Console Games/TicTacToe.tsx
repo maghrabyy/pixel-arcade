@@ -38,7 +38,7 @@ export const TicTacToe = ()=>{
     const INITIAL_PREV_PLAYER = null;
     const INITIAL_CURRENT_WINNER = null;
 
-    const { playerWonAlert, playerLostAlert} = useAlert()
+    const { playerWonAlert, playerLostAlert, insufficientCoinsAlert} = useAlert()
     const { userHealth, refillHealth,setUserHealth } = useContext(HealthContext);
     const { userCoins,payWithCoins, addCoins} = useContext(CoinsContext)
     interface ITicTacToeCell{
@@ -212,7 +212,9 @@ export const TicTacToe = ()=>{
         if(userCoins >= RECHARGE_LIVES_AMOUNT){
             refillHealth();
             payWithCoins(RECHARGE_LIVES_AMOUNT);
-        }
+        }else{
+            insufficientCoinsAlert();
+          }
     }
 
     const selectGameModeHandler = (mode:GameMode)=>{

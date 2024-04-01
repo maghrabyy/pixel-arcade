@@ -271,10 +271,13 @@ type GameoverUIType = {
 const GameoverUI = ({gamestate,replayGameCallbk,returnToMainMenuCallbk}:GameoverUIType)=>{
   const { userHealth, refillHealth } = useContext(HealthContext);
   const { userCoins, payWithCoins } = useContext(CoinsContext);
+  const {insufficientCoinsAlert} = useAlert()
   const rechargeLives = () => {
     if (userCoins >= RECHARGE_LIVES_AMOUNT) {
       refillHealth();
       payWithCoins(RECHARGE_LIVES_AMOUNT);
+    }else{
+      insufficientCoinsAlert();
     }
   }
   const gameCondition = () => {
@@ -316,6 +319,7 @@ const GameMainMenu = ({
 
   const { userCoins, payWithCoins } = useContext(CoinsContext);
   const { refillHealth, userHealth } = useContext(HealthContext);
+  const {insufficientCoinsAlert} = useAlert()
   const startGame = () => {
     setGamestate(GameState.playing);
   };
@@ -323,6 +327,8 @@ const GameMainMenu = ({
     if (userCoins >= RECHARGE_LIVES_AMOUNT) {
       refillHealth();
       payWithCoins(RECHARGE_LIVES_AMOUNT);
+    }else{
+      insufficientCoinsAlert();
     }
   }
   return (
